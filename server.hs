@@ -6,6 +6,12 @@ import Control.Concurrent.STM
 
 data ChatInfo = ChatInfo [String] [Handle]
 
+messagesFrom :: ChatInfo -> [String]
+messagesFrom (ChatInfo messages _) = messages
+
+handlesFrom :: ChatInfo -> [Handle]
+handlesFrom (ChatInfo _ handles) = handles
+
 main :: IO ()
 main = do
   port <- fmap (PortNumber . fromInteger . read . head) getArgs
